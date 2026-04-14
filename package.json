@@ -1,0 +1,12 @@
+{
+  "name": "micro-frontend-module-federation",
+  "private": true,
+  "scripts": {
+    "install:all": "npm i --prefix remote-react && npm i --prefix remote-vue && npm i --prefix host",
+    "start": "concurrently --names \"REACT,VUE,HOST\" --prefix-colors \"cyan,green,magenta\" \"npm start --prefix remote-react\" \"npm start --prefix remote-vue\" \"npm start --prefix host\"",
+    "build": "npm run build --prefix remote-react && npm run build --prefix remote-vue && npm run build --prefix host"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
