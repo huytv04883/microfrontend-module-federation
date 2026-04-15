@@ -10,7 +10,13 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@routers/*": ["src/routers/*"],
+      "@components/*": ["src/components/*"]
+    }
   },
   "include": ["src"]
 }

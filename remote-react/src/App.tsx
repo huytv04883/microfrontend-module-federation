@@ -1,5 +1,5 @@
 import React from 'react';
-import HelloReact from './components/HelloReact';
+import HelloReact from './components/Count';
 
 export default function App() {
   return (

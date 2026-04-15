@@ -80,7 +80,7 @@ Exposes one component:
 
 ```js
 exposes: {
-  "./HelloReact": "./src/components/HelloReact.tsx",
+  "./Count": "./src/components/Count.tsx",
 }
 ```
 

@@ -4,12 +4,15 @@ export default function NotFoundPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: "center", padding: "80px 20px" }}>
-      <h1 style={{ fontSize: "6rem", margin: 0 }}>404</h1>
-      <p style={{ fontSize: "1.5rem", marginBottom: "24px" }}>
-        Page not found
-      </p>
-      <button onClick={() => navigate("/")}>Go home</button>
+    <div className="flex flex-col items-center justify-center min-h-screen px-5 text-center">
+      <h1 className="text-9xl font-bold m-0">404</h1>
+      <p className="text-2xl mb-6">Page not found</p>
+      <button
+        onClick={() => navigate("/")}
+        className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors cursor-pointer"
+      >
+        Go home
+      </button>
     </div>
   );
 }

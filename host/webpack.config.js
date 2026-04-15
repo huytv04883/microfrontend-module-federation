@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { ModuleFederationPlugin } = require("webpack").container;
+const { ModuleFederationPlugin } = require("@module-federation/enhanced/webpack");
 const webpack = require("webpack");
+const path = require("path");
 require("dotenv").config();
 
 module.exports = {
@@ -10,7 +11,15 @@ module.exports = {
     publicPath: "http://localhost:3000/",
     clean: true,
   },
-  resolve: { extensions: [".tsx", ".ts", ".jsx", ".js"] },
+  resolve: {
+    extensions: [".tsx", ".ts", ".jsx", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+      "@routers": path.resolve(__dirname, "src/routers"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@layouts": path.resolve(__dirname, "src/layouts"),
+    },
+  },
   module: {
     rules: [
       {
@@ -19,21 +28,22 @@ module.exports = {
         exclude: /node_modules/,
         options: { transpileOnly: true },
       },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
       name: "host",
-      remotes: {
-        // format: "<name>@<url>/remoteEntry.js"
-        remoteReact: "remoteReact@http://localhost:3001/remoteEntry.js",
-        remoteVue: "remoteVue@http://localhost:3002/remoteEntry.js",
-      },
+      // No static remotes — all remotes are registered dynamically at runtime
+      // via @module-federation/enhanced/runtime init() in src/federation.ts
       shared: {
         react: { singleton: true, requiredVersion: "^18" },
         "react-dom": { singleton: true, requiredVersion: "^18" },
         vue: { singleton: true, requiredVersion: "^3" },
-        "@clerk/clerk-react": { singleton: true, requiredVersion: "^6" },
+        "@clerk/react": { singleton: true, requiredVersion: "^6" },
         "react-router-dom": { singleton: true, requiredVersion: "^7.14.1" },
       },
     }),
@@ -45,6 +55,7 @@ module.exports = {
   devServer: {
     port: 3000,
     hot: true,
+    historyApiFallback: true,
     headers: { "Access-Control-Allow-Origin": "*" },
   },
 };

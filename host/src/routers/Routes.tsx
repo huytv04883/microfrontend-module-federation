@@ -1,20 +1,16 @@
-import React, { Suspense } from "react";
+import AuthLayout from "@/layouts/AuthLayout";
+import MainLayout from "@/layouts/MainLayout";
+import ErrorBoundary from "@components/ErrorBoundary";
+import React from "react";
 import { RouteObject } from "react-router-dom";
-import ErrorBoundary from "../components/ErrorBoundary";
-import AuthLayout from "../layouts/AuthLayout";
-import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 
-const HomePage = React.lazy(() => import("../pages/Home"));
-const LoginPage = React.lazy(() => import("../pages/Login"));
-const NotFoundPage = React.lazy(() => import("../pages/404"));
+const HomePage = React.lazy(() => import("@/pages/Home"));
+const LoginPage = React.lazy(() => import("@/pages/Login"));
+const NotFoundPage = React.lazy(() => import("@/pages/404"));
 
 function LazyPage({ children }: { children: React.ReactNode }) {
-  return (
-    <ErrorBoundary>
-      <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-    </ErrorBoundary>
-  );
+  return <ErrorBoundary>{children}</ErrorBoundary>;
 }
 
 export const routes: RouteObject[] = [

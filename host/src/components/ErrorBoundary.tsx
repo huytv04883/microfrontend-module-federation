@@ -27,11 +27,9 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
       return (
-        <div style={{ padding: "2rem", textAlign: "center" }}>
+        <div>
           <h2>Something went wrong.</h2>
-          <pre style={{ color: "red", fontSize: "0.85rem" }}>
-            {this.state.error?.message}
-          </pre>
+          <pre>{this.state.error?.message}</pre>
           <button onClick={this.handleReset}>Try again</button>
         </div>
       );

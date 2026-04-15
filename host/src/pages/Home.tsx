@@ -1,9 +1,26 @@
-import { Show, UserButton } from "@clerk/react";
+import { loadRemoteModule } from "@/utils/loader";
+import { UserButton } from "@clerk/react";
+import { ComponentType, lazy, Suspense } from "react";
+
+const RemoteCount = lazy(() =>
+  loadRemoteModule<{ default: ComponentType }>("remoteReact", "Count").then(
+    (m) => {
+      console.log("mmmmmmmmmmmmmm", m);
+      
+      return {
+        default: m.default,
+      };
+    },
+  ),
+);
 
 export default function HomePage() {
   return (
-    <Show when="signed-in">
+    <>
       <UserButton />
-    </Show>
+      <Suspense fallback={<div>Loading remote...</div>}>
+        <RemoteCount />
+      </Suspense>
+    </>
   );
 }

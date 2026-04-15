@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { ModuleFederationPlugin } = require("webpack").container;
+const { ModuleFederationPlugin } = require('@module-federation/enhanced/webpack');
 
 module.exports = {
   mode: "development",
@@ -17,6 +17,10 @@ module.exports = {
         exclude: /node_modules/,
         options: { transpileOnly: true },
       },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   plugins: [
@@ -24,7 +28,7 @@ module.exports = {
       name: "remoteReact",
       filename: "remoteEntry.js",
       exposes: {
-        "./HelloReact": "./src/components/HelloReact.tsx",
+        "./Count": "./src/components/Count.tsx",
       },
       shared: {
         react: { singleton: true, requiredVersion: "^18" },
@@ -40,3 +44,4 @@ module.exports = {
     headers: { "Access-Control-Allow-Origin": "*" },
   },
 };
+
