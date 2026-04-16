@@ -80,7 +80,7 @@ Exposes one component:
 
 ```js
 exposes: {
-  "./Count": "./src/components/Count.tsx",
+  "./Counter": "./src/components/Count.tsx",
 }
 ```
 
@@ -89,7 +89,7 @@ Exposes one Vue SFC, processed with `vue-loader`:
 
 ```js
 exposes: {
-  "./HelloVue": "./src/components/HelloVue.vue",
+  "./Counter": "./src/components/Counter.vue",
 }
 ```
 
@@ -103,7 +103,7 @@ exposes: {
 | [host/src/App.tsx](host/src/App.tsx) | Shell app — lazy-loads both remote components |
 | [host/webpack.config.js](host/webpack.config.js) | Host federation config — remotes + shared scope |
 | [remote-react/webpack.config.js](remote-react/webpack.config.js) | React remote federation config — exposes `HelloReact` |
-| [remote-vue/webpack.config.js](remote-vue/webpack.config.js) | Vue remote federation config — exposes `HelloVue` via `vue-loader` |
+| [remote-vue/webpack.config.js](remote-vue/webpack.config.js) | Vue remote federation config — exposes `Counter` via `vue-loader` |
 
 ---
 
@@ -118,7 +118,7 @@ exposes: {
 
 ```tsx
 <VueWrapper
-  componentLoader={() => import("remoteVue/HelloVue")}
+  componentLoader={() => import("remoteVue/Counter")}
   vueProps={{ message: "Hello from React!" }}
 />
 ```

@@ -26,9 +26,9 @@ module.exports = {
     new VueLoaderPlugin(),
     new ModuleFederationPlugin({
       name: 'remoteVue',
-      filename: 'remoteEntry.js',
+      filename: 'vue_remote_entry.js',
       exposes: {
-        './HelloVue': './src/components/HelloVue.vue',
+        './Counter': './src/components/Counter.vue',
       },
       shared: {
         vue: { singleton: true, requiredVersion: '^3' },

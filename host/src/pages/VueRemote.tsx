@@ -1,15 +1,9 @@
 import { loadRemoteModule } from "@/utils/loader";
 import { VueWrapper } from "@/components";
-import { ComponentType, lazy, Suspense, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { DefineComponent } from "vue";
 
-const RemoteCounter = lazy(() =>
-  loadRemoteModule<{ default: ComponentType }>("remoteReact", "Counter").then(
-    (m) => ({ default: m.default }),
-  ),
-);
-
-export default function HomePage() {
+export default function VueRemotePage() {
   const [Counter, setCount] = useState<DefineComponent<any, any, any> | null>(null);
 
   useEffect(() => {
@@ -19,10 +13,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="p-6 flex flex-col gap-6">
-      <Suspense fallback={<div>Loading React remote...</div>}>
-        <RemoteCounter />
-      </Suspense>
+    <div className="pt-2">
       {Counter ? (
         <VueWrapper component={Counter} />
       ) : (

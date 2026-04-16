@@ -1,17 +1,14 @@
 <template>
-  <div class="vue-card">
-    <h3>💚 {{ title }}</h3>
-    <p>Count: <strong>{{ count }}</strong></p>
-    <button @click="count++">+ Tăng</button>
+  <div class="vue-counter">
+    <p>
+      Count: <strong>{{ count }}</strong>
+    </p>
+    <button @click="count++">+ Plus</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
-withDefaults(defineProps<{ title?: string }>(), {
-  title: 'Hello from Vue Remote',
-});
+import { ref } from "vue";
 
 const count = ref(0);
 </script>

@@ -4,8 +4,8 @@ declare module 'remoteReact/Count' {
   export default Count;
 }
 
-declare module 'remoteVue/HelloVue' {
+declare module 'remoteVue/Counter' {
   import { DefineComponent } from 'vue';
-  const HelloVue: DefineComponent;
-  export default HelloVue;
+  const Counter: DefineComponent;
+  export default Counter;
 }

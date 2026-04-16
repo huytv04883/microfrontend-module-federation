@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "../styles/index.css";
 
-export default function Count() {
+export default function Counter() {
   const [count, setCount] = useState(0);
   return (
     <div className="p-5 border-2 border-[#61dafb] rounded-xl bg-[#e8f7fd] max-w-xs">

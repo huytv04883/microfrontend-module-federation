@@ -6,8 +6,8 @@ import {
 
 // Registry of all known remotes — source of truth, nothing is loaded from here upfront.
 const REMOTES_REGISTRY: Record<string, string> = {
-  remoteReact: "http://localhost:3001/remoteEntry.js",
-  remoteVue: "http://localhost:3002/remoteEntry.js",
+  remoteReact: "http://localhost:3001/react_remote_entry.js",
+  remoteVue: "http://localhost:3002/vue_remote_entry.js",
 };
 
 // Track which remotes have already been registered to avoid duplicate calls.

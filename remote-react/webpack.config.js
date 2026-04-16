@@ -26,9 +26,9 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "remoteReact",
-      filename: "remoteEntry.js",
+      filename: "react_remote_entry.js",
       exposes: {
-        "./Count": "./src/components/Count.tsx",
+        "./Counter": "./src/components/Counter.tsx",
       },
       shared: {
         react: { singleton: true, requiredVersion: "^18" },
